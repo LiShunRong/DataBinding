@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<data>
+    <import type="android.view.View"></import>
+    <import type="com.example.admin.guang.fragment.utils.GiftUtils"></import>
+    <variable
+        name="bean"
+        type="com.example.admin.guang.CommunityBean.DataBean.ListBean"></variable>
+    <variable
+        name="giftUtils"
+        type="GiftUtils"></variable>
+</data>
+    <LinearLayout
+        android:background="#ddd"
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/headIv"
+                android:src="@{bean.author_img}"
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"
+                android:textColor="#666"
+                android:text="@{bean.author_name}"
+                android:layout_toRightOf="@id/headIv"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/showIv"
+                android:src="@{bean.cover_img}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/giftIv"
+                android:onClick="@{()->giftUtils.loadGift(giftIv,bean.cover_img,showIv)}"
+                android:visibility="@{GiftUtils.isGif(bean.cover_img)?View.VISIBLE:View.GONE}"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/gif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <TextView
+
+            android:background="#fff"
+            android:textSize="16sp"
+            android:textColor="#222"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:text="@{bean.content}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>
