@@ -22,6 +22,7 @@ public class RepileRecyclerAdapter extends BaseRecycylerAdapter<CommentBean.Repi
     public RepileRecyclerAdapter(Context ctx) {
         super(ctx);
         removeFooterView();
+
     }
 
     @Override
