@@ -3,10 +3,12 @@ package com.example.admin.guang.utils;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.admin.guang.CommentBean;
 import com.example.admin.guang.CommunityBean;
 import com.example.admin.guang.DetailsBean;
 import com.example.admin.guang.MyApplication;
 import com.example.admin.guang.UpDownBean;
+import com.example.admin.guang.service.CommentService;
 import com.example.admin.guang.service.CommunityService;
 import com.example.admin.guang.service.DetailsService;
 import com.example.admin.guang.service.OnLoadDataFinishListener;
@@ -113,6 +115,29 @@ public class HttpUtils {
             @Override
             public void onFailure(Call<DetailsBean> call, Throwable t) {
             loadDataFinishListener.loadError(t.getMessage(),0);
+            }
+        });
+    }
+    public static void loadComments(int id, final int page , final OnLoadDataFinishListener<CommentBean> commentBeanOnLoadDataFinishListener){
+        MyApplication.retrofit.create(CommentService.class).getComments(id,page+"").enqueue(new Callback<CommentBean>() {
+            @Override
+            public void onResponse(Call<CommentBean> call, Response<CommentBean> response) {
+                if(response.isSuccessful()){
+                    CommentBean body = response.body();
+                    commentBeanOnLoadDataFinishListener.loadSuccess(body,getType(body.getData().getComment_list(),page));
+
+                }else {
+                    try {
+                        commentBeanOnLoadDataFinishListener.loadError(response.errorBody().string(),getType(null,page));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommentBean> call, Throwable t) {
+            commentBeanOnLoadDataFinishListener.loadError(t.getMessage(),getType(null,page));
             }
         });
     }

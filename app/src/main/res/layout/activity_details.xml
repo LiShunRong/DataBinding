@@ -9,6 +9,12 @@
         <variable
             name="content"
             type="android.text.Spanned"></variable>
+        <variable
+            name="manager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager"></variable>
+        <variable
+            name="adapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"></variable>
     </data>
 
 
@@ -21,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
+    <com.example.admin.guang.MyScrollerView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
          <LinearLayout
@@ -75,9 +82,15 @@
                 android:scrollbars="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+             <android.support.v7.widget.RecyclerView
+                 android:layoutManager="@{manager}"
+                 android:adapter="@{adapter}"
+                 android:id="@+id/recycler"
+                 android:nestedScrollingEnabled="false"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
          </LinearLayout>
-
-    </ScrollView>
+          </com.example.admin.guang.MyScrollerView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
 
