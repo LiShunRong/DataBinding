@@ -7,11 +7,13 @@ import com.example.admin.guang.CommentBean;
 import com.example.admin.guang.CommunityBean;
 import com.example.admin.guang.DetailsBean;
 import com.example.admin.guang.MyApplication;
+import com.example.admin.guang.RepileBean;
 import com.example.admin.guang.UpDownBean;
 import com.example.admin.guang.service.CommentService;
 import com.example.admin.guang.service.CommunityService;
 import com.example.admin.guang.service.DetailsService;
 import com.example.admin.guang.service.OnLoadDataFinishListener;
+import com.example.admin.guang.service.RepileService;
 import com.example.admin.guang.service.UpDownService;
 import com.example.admin.guang.service.VideoService;
 import com.google.gson.Gson;
@@ -73,39 +75,41 @@ public class HttpUtils {
             }
         });
     }
-    public static void updown(String id, int type, int typeValue, final OnLoadDataFinishListener<UpDownBean> listener){
-        MyApplication.retrofit.create(UpDownService.class).getUpDownState(id,type,typeValue).enqueue(new Callback<UpDownBean>() {
+
+    public static void updown(String id, int type, int typeValue, final OnLoadDataFinishListener<UpDownBean> listener) {
+        MyApplication.retrofit.create(UpDownService.class).getUpDownState(id, type, typeValue).enqueue(new Callback<UpDownBean>() {
 
             @Override
             public void onResponse(Call<UpDownBean> call, Response<UpDownBean> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     listener.loadSuccess(response.body(), 0);
-                }else {
+                } else {
                     try {
                         String string = response.errorBody().string();
-                        listener.loadSuccess(new Gson().fromJson(string,UpDownBean.class),0);
+                        listener.loadSuccess(new Gson().fromJson(string, UpDownBean.class), 0);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        listener.loadError(e.getMessage(),0);
+                        listener.loadError(e.getMessage(), 0);
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<UpDownBean> call, Throwable t) {
-                listener.loadError(t.getMessage(),0);
+                listener.loadError(t.getMessage(), 0);
             }
         });
     }
-    public static void loadDeatilsData(String id, final OnLoadDataFinishListener<DetailsBean> loadDataFinishListener){
+
+    public static void loadDeatilsData(String id, final OnLoadDataFinishListener<DetailsBean> loadDataFinishListener) {
         MyApplication.retrofit.create(DetailsService.class).getDetails(id).enqueue(new Callback<DetailsBean>() {
             @Override
             public void onResponse(Call<DetailsBean> call, Response<DetailsBean> response) {
-                if(response.isSuccessful()){
-                    loadDataFinishListener.loadSuccess(response.body(),0);
-                }else {
+                if (response.isSuccessful()) {
+                    loadDataFinishListener.loadSuccess(response.body(), 0);
+                } else {
                     try {
-                        loadDataFinishListener.loadError(response.errorBody().string(),0);
+                        loadDataFinishListener.loadError(response.errorBody().string(), 0);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -114,21 +118,22 @@ public class HttpUtils {
 
             @Override
             public void onFailure(Call<DetailsBean> call, Throwable t) {
-            loadDataFinishListener.loadError(t.getMessage(),0);
+                loadDataFinishListener.loadError(t.getMessage(), 0);
             }
         });
     }
-    public static void loadComments(int id, final int page , final OnLoadDataFinishListener<CommentBean> commentBeanOnLoadDataFinishListener){
-        MyApplication.retrofit.create(CommentService.class).getComments(id,page+"").enqueue(new Callback<CommentBean>() {
+
+    public static void loadComments(int id, final int page, final OnLoadDataFinishListener<CommentBean> commentBeanOnLoadDataFinishListener) {
+        MyApplication.retrofit.create(CommentService.class).getComments(id, page + "").enqueue(new Callback<CommentBean>() {
             @Override
             public void onResponse(Call<CommentBean> call, Response<CommentBean> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     CommentBean body = response.body();
-                    commentBeanOnLoadDataFinishListener.loadSuccess(body,getType(body.getData().getComment_list(),page));
+                    commentBeanOnLoadDataFinishListener.loadSuccess(body, getType(body.getData().getComment_list(), page));
 
-                }else {
+                } else {
                     try {
-                        commentBeanOnLoadDataFinishListener.loadError(response.errorBody().string(),getType(null,page));
+                        commentBeanOnLoadDataFinishListener.loadError(response.errorBody().string(), getType(null, page));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -137,10 +142,11 @@ public class HttpUtils {
 
             @Override
             public void onFailure(Call<CommentBean> call, Throwable t) {
-            commentBeanOnLoadDataFinishListener.loadError(t.getMessage(),getType(null,page));
+                commentBeanOnLoadDataFinishListener.loadError(t.getMessage(), getType(null, page));
             }
         });
     }
+
     private static int getType(List list, int page) {
         if (list == null && page == 1) {
             return TYPE_REFLASH_FAILED;
@@ -162,4 +168,26 @@ public class HttpUtils {
     }
 
     ;
+
+    public static void loadRepiles(int id, String content, final OnLoadDataFinishListener<RepileBean> beanOnLoadDataFinishListener) {
+        MyApplication.retrofit.create(RepileService.class).getRepiles(id, content).enqueue(new Callback<RepileBean>() {
+            @Override
+            public void onResponse(Call<RepileBean> call, Response<RepileBean> response) {
+                if (response.isSuccessful()) {
+                    beanOnLoadDataFinishListener.loadSuccess(response.body(), 0);
+                } else {
+                    try {
+                        beanOnLoadDataFinishListener.loadError(response.errorBody().string(), 0);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RepileBean> call, Throwable t) {
+                beanOnLoadDataFinishListener.loadError(t.getMessage(), 0);
+            }
+        });
+    }
 }

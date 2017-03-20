@@ -24,6 +24,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     protected T binding;
     protected Activity a;
 
+
     @Override
     public void onAttach(Activity context) {
         super.onAttach(context);

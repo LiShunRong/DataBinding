@@ -32,7 +32,7 @@ public class BindAdapter {
     @BindingAdapter({"android:src"})
     public static void loadImage(final ImageView iv, String url) {
         if(GiftUtils.isGif(url)){
-            Glide.with(iv.getContext()).load(url).asBitmap().priority(Priority.IMMEDIATE).diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.shape_mark).centerCrop().into(iv);
+            Glide.with(iv.getContext()).load(url).asBitmap().priority(Priority.IMMEDIATE).diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.shape_mark).centerCrop().into(iv);
         }else {
             Glide.with(iv.getContext()).load(url).asBitmap().placeholder(R.drawable.shape_mark).centerCrop().into(iv);
         }

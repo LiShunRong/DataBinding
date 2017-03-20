@@ -8,9 +8,9 @@
 </data>
     <LinearLayout
         android:layout_marginBottom="5dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="wrap_content">
         <TextView
             android:textColor="#ccc"
             android:id="@+id/other"
@@ -18,9 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
       <TextView
+
           android:id="@+id/content"
           android:textSize="16sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

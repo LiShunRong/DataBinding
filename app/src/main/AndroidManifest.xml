@@ -25,7 +25,8 @@
         <activity
             android:name=".VideoActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" />
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".TuPianYuLanActivity"></activity>
     </application>
 
 </manifest>

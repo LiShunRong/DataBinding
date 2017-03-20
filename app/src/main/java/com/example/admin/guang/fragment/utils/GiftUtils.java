@@ -44,6 +44,6 @@ public class GiftUtils {
     }
     public  void loadGift(final ImageView giftView, final String url, final ImageView showIv){
         giftView.setVisibility(View.GONE);
-        Glide.with(giftView.getContext()).load(url).asBitmap().priority(Priority.IMMEDIATE).diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.shape_mark).centerCrop().into(showIv);
+        Glide.with(giftView.getContext()).load(url).asBitmap().priority(Priority.IMMEDIATE).diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.shape_mark).centerCrop().into(showIv);
     }
 }

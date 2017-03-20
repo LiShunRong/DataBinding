@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            android:visibility="@{listbean.praise_count==0?View.GONE:View.VISIBLE}"></android.support.v7.widget.RecyclerView>
+            android:visibility="@{listbean.reply_number==0?View.GONE:View.VISIBLE}"></android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 </layout>
