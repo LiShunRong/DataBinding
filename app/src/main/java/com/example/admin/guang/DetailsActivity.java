@@ -46,7 +46,6 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> implem
                 commentRecyclerAdapter.removeFooterView();
                 return;
             }
-
             DetailsActivity.this.page++;
             enableLoad = true;
             isLoading = false;
@@ -64,7 +63,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> implem
 
     @Override
     protected void initActivityImpl() {
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_UNSPECIFIED);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         binding.swip.setOnRefreshListener(this);
         binding.setManager(new LinearLayoutManager(this));
         commentRecyclerAdapter = new CommentRecyclerAdapter(this);
@@ -119,7 +118,6 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> implem
             }
         });
         binding.wv.loadDataWithBaseURL(null, info.getContent(), "text/html", "utf-8", "");
-
     }
 
     int page = 1;

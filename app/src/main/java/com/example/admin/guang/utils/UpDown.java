@@ -17,6 +17,7 @@ public class UpDown implements OnLoadDataFinishListener<UpDownBean> {
     CheckBox cb;
     public void updateState(CheckBox cb, CommunityBean.DataBean.ListBean listBean){
         bean=listBean;
+        this.cb=cb;
         cb.setChecked(listBean.getIs_praise()==1);
         int is_praise = listBean.getIs_praise();
         Log.e("tag",is_praise+"");

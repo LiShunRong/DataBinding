@@ -31,7 +31,7 @@ public class NetCacheInterceptor implements Interceptor {
         if(request.method().equals("POST"))return response;
 
         if(response.isSuccessful())
-        return response.newBuilder().header("Cache-Control", " public, max-age=60").removeHeader("Pragma").build();
+        return response.newBuilder().header("Cache-Control", " public, max-age=1").removeHeader("Pragma").build();
 return response;
     }
 }

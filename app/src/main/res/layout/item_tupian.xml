@@ -48,10 +48,16 @@
                 android:layout_height="match_parent" />
             <ImageView
                 android:id="@+id/giftIv"
-                android:onClick="@{()->giftUtils.loadGift(giftIv,bean.cover_img,showIv)}"
-                android:visibility="@{GiftUtils.isGif(bean.cover_img)?View.VISIBLE:View.GONE}"
+                android:onClick="@{()->giftUtils.loadGift(giftIv,bean.cover_img,showIv,pb,bean)}"
+                android:visibility="@{(GiftUtils.isGif(bean.cover_img,bean.isLoad))?View.VISIBLE:View.GONE}"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/gif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ProgressBar
+                android:id="@+id/pb"
+                android:visibility="@{bean.load?View.VISIBLE:View.GONE}"
+                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

@@ -31,7 +31,6 @@ public class RepileDialog extends Dialog implements View.OnClickListener, OnLoad
     public RepileDialog(@NonNull Context context, CommentBean.DataBean.CommentListBean bean ){
         super(context);
         this.bean = bean;
-
         Window window = getWindow();
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.setBackgroundDrawable(new BitmapDrawable());
@@ -42,6 +41,7 @@ public class RepileDialog extends Dialog implements View.OnClickListener, OnLoad
         inflate.send.setOnClickListener(this);
         setContentView(inflate.getRoot());
         window.setLayout(context.getResources().getDisplayMetrics().widthPixels, WindowManager.LayoutParams.WRAP_CONTENT);
+//        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
     }
 
     @Override

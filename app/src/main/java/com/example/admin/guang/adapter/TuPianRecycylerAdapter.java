@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.example.admin.guang.BR;
 import com.example.admin.guang.CommunityBean;
+import com.example.admin.guang.R;
 import com.example.admin.guang.annoation.ActivityFragmentAnnoation;
 import com.example.admin.guang.base.BaseHolder;
 import com.example.admin.guang.base.BaseRecycylerAdapter;
@@ -37,6 +38,14 @@ public class TuPianRecycylerAdapter extends BaseRecycylerAdapter<CommunityBean.D
         public TuPianHolder(ViewDataBinding binding) {
             super(binding);
             binding.setVariable(BR.giftUtils,new GiftUtils());
+        }
+
+        @Override
+        public void bind(CommunityBean.DataBean.ListBean bean) {
+            super.bind(bean);
+            if(bean.isLoad()){
+                itemView.findViewById(R.id.giftIv).performClick();
+            }
         }
     }
 

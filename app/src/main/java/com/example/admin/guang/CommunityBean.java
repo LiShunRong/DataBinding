@@ -115,6 +115,15 @@ public class CommunityBean {
             private int is_praise;
             private  int is_step_on;
             private  String vedio_url;
+            private boolean isLoad;
+
+            public boolean isLoad() {
+                return isLoad;
+            }
+
+            public void setLoad(boolean load) {
+                isLoad = load;
+            }
 
             public int getAuthor_id() {
                 return author_id;
