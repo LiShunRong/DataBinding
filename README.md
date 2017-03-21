@@ -9,7 +9,7 @@
  * Glide gif加载
 #  效果图
 
-![image](https://github.com/LiShunRong/guang/new.gif)
+![image](https://github.com/LiShunRong/guang/blob/master/new.gif)
 
 
 
